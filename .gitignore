@@ -1,52 +1,50 @@
-# Prerequisites
-*.d
+# ==========================
+# Visual Studio - Windows Forms
+# ==========================
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+# Archivos y carpetas de usuario
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
 
-# Linker output
-*.ilk
-*.map
-*.exp
+# Carpeta temporal de Visual Studio
+.vs/
 
-# Precompiled Headers
-*.gch
-*.pch
+# Compilados
+bin/
+obj/
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+# Build de dependencias NuGet
+packages/
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+# Archivos de configuración generados automáticamente
+*.cache
+*.log
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+# Archivos de base de datos locales
+*.mdf
+*.ldf
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
+# Backups
+*.bak
+*.tmp
+
+# Configuración de Rider o Resharper
+.idea/
+_ReSharper*/
+*.DotSettings.user
+
+# Archivos específicos de compilación
 *.pdb
+*.exe
+*.dll
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# Carpetas de test
+TestResults/
+
+# Otros archivos que no deberían ir al repositorio
+*.vsidx
+*.dbmdl
+*.jfm
+*.tlog
