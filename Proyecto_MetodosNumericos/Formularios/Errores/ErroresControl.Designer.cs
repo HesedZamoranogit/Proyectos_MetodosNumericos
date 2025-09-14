@@ -127,7 +127,6 @@
             txtEa.Name = "txtEa";
             txtEa.Size = new Size(268, 27);
             txtEa.TabIndex = 8;
-            txtEa.TextChanged += txtEa_TextChanged;
             // 
             // txtEr
             // 
@@ -139,7 +138,6 @@
             txtEr.Name = "txtEr";
             txtEr.Size = new Size(268, 27);
             txtEr.TabIndex = 9;
-            txtEr.TextChanged += txtEr_TextChanged;
             // 
             // label4
             // 

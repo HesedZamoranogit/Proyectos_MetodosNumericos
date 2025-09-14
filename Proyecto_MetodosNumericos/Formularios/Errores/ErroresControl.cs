@@ -88,14 +88,19 @@ namespace Proyecto_MetodosNumericos.Formularios.Errores
             Border_R.AplicarRedondeado(txtEr, 8);
 
 
+            txtEa.Text = "0";
+            txtEr.Text = "0 %";
+
         }
 
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             txtVa.Clear();
             txtVr.Clear();
-            txtEa.Clear();
-            txtEr.Clear();
+            txtEa.Text = "0";
+            txtEr.Text = "0 %";
+
+
         }
 
         //ESTE ES EL VALOR REAL TEXTBOX QUE SE ESCRIBE
@@ -122,20 +127,23 @@ namespace Proyecto_MetodosNumericos.Formularios.Errores
                 MessageBox.Show("Por favor ingrese valores numéricos distintos de cero en ambos campos.", "Error de entrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            txtEa.Text = ErrorAbsoluto().ToString();
-            txtEr.Text = ErrorRelativo().ToString();
+            else
+            {
+                txtEa.Text = ErrorAbsoluto().ToString("F2");
+                txtEr.Text = ErrorRelativo().ToString("F2") + " %";
+            }
         }
 
         //ESTE ES EL VALOR APROXIMADO TEXTBOX ESTATICO
         private void txtEa_TextChanged(object sender, EventArgs e)
         {
 
-            txtEa.Text = ErrorAbsoluto().ToString();
+
         }
         //ESTE ES EL VALOR APROXIMADO TEXTBOX ESTATICO
         private void txtEr_TextChanged(object sender, EventArgs e)
         {
-            txtEr.Text = ErrorRelativo().ToString();
+
         }
     }
 }
