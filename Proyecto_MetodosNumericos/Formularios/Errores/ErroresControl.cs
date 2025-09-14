@@ -37,15 +37,8 @@ namespace Proyecto_MetodosNumericos.Formularios.Errores
         {
             double Ea = Math.Abs(ValorReal - ValorAproximado);
 
-            if (Ea < 0)
-            {
-                Ea = Ea * -1;
-                return Ea;
-            }
-            else
-            {
-                return Ea;
-            }
+            return Ea;
+           
 
         }
 
@@ -74,7 +67,7 @@ namespace Proyecto_MetodosNumericos.Formularios.Errores
 
         private void BtnRegresar_Click(object sender, EventArgs e)
         {
-            // Dispara el evento
+           
             RegresarClicked?.Invoke(this, EventArgs.Empty);
         }
 
@@ -134,16 +127,5 @@ namespace Proyecto_MetodosNumericos.Formularios.Errores
             }
         }
 
-        //ESTE ES EL VALOR APROXIMADO TEXTBOX ESTATICO
-        private void txtEa_TextChanged(object sender, EventArgs e)
-        {
-
-
-        }
-        //ESTE ES EL VALOR APROXIMADO TEXTBOX ESTATICO
-        private void txtEr_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
