@@ -33,7 +33,7 @@
             pictureBox3 = new PictureBox();
             pictureBox1 = new PictureBox();
             BtnProximamente3 = new Button();
-            BtnProximamente2 = new Button();
+            BtnMetodoFalso = new Button();
             BtnErrores = new Button();
             BtnTabulacion = new Button();
             pictureBox2 = new PictureBox();
@@ -92,17 +92,18 @@
             BtnProximamente3.Text = "Proximamente...";
             BtnProximamente3.UseVisualStyleBackColor = true;
             // 
-            // BtnProximamente2
+            // BtnMetodoFalso
             // 
-            BtnProximamente2.FlatStyle = FlatStyle.Flat;
-            BtnProximamente2.Font = new Font("HP Simplified Jpan", 10.2F, FontStyle.Bold);
-            BtnProximamente2.ForeColor = Color.FromArgb(12, 157, 111);
-            BtnProximamente2.Location = new Point(649, 319);
-            BtnProximamente2.Name = "BtnProximamente2";
-            BtnProximamente2.Size = new Size(221, 51);
-            BtnProximamente2.TabIndex = 36;
-            BtnProximamente2.Text = "Proximamente...";
-            BtnProximamente2.UseVisualStyleBackColor = true;
+            BtnMetodoFalso.FlatStyle = FlatStyle.Flat;
+            BtnMetodoFalso.Font = new Font("HP Simplified Jpan", 10.2F, FontStyle.Bold);
+            BtnMetodoFalso.ForeColor = Color.FromArgb(12, 157, 111);
+            BtnMetodoFalso.Location = new Point(649, 319);
+            BtnMetodoFalso.Name = "BtnMetodoFalso";
+            BtnMetodoFalso.Size = new Size(221, 51);
+            BtnMetodoFalso.TabIndex = 36;
+            BtnMetodoFalso.Text = "MetodoFalso";
+            BtnMetodoFalso.UseVisualStyleBackColor = true;
+            BtnMetodoFalso.Click += BtnMetodoFalso_Click;
             // 
             // BtnErrores
             // 
@@ -158,9 +159,9 @@
             // 
             // panelContenedor
             // 
-            panelContenedor.Location = new Point(0, -4);
+            panelContenedor.Location = new Point(0, -3);
             panelContenedor.Name = "panelContenedor";
-            panelContenedor.Size = new Size(1225, 686);
+            panelContenedor.Size = new Size(1225, 685);
             panelContenedor.TabIndex = 41;
             panelContenedor.Visible = false;
             // 
@@ -175,7 +176,7 @@
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox1);
             Controls.Add(BtnProximamente3);
-            Controls.Add(BtnProximamente2);
+            Controls.Add(BtnMetodoFalso);
             Controls.Add(BtnErrores);
             Controls.Add(BtnTabulacion);
             Controls.Add(pictureBox2);
@@ -195,7 +196,7 @@
         private PictureBox pictureBox3;
         private PictureBox pictureBox1;
         private Button BtnProximamente3;
-        private Button BtnProximamente2;
+        private Button BtnMetodoFalso;
         private Button BtnErrores;
         private Button BtnTabulacion;
         private PictureBox pictureBox2;

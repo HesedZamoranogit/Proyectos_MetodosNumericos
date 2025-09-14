@@ -1,6 +1,7 @@
 using System.Drawing;               // Color
 using System.Drawing.Drawing2D;
 using Proyecto_MetodosNumericos.Formularios.Errores;
+using Proyecto_MetodosNumericos.Formularios.MetodoFalso;
 using Proyecto_MetodosNumericos.Formularios.Tabulacion;
 using Proyecto_MetodosNumericos.Utils;
 
@@ -103,6 +104,17 @@ namespace Proyecto_MetodosNumericos
 
             panelContenedor.Controls.Clear();
             panelContenedor.Controls.Add(Errores);
+        }
+
+        private void BtnMetodoFalso_Click(object sender, EventArgs e)
+        {
+            panelContenedor.Visible = true;
+            MetFalsoControl Falso = new MetFalsoControl();
+            Falso.Dock = DockStyle.Fill;
+
+
+            panelContenedor.Controls.Clear();
+            panelContenedor.Controls.Add(Falso);
         }
     }
 }

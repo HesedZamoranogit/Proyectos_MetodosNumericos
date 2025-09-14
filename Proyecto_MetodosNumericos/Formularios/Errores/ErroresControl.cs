@@ -35,12 +35,24 @@ namespace Proyecto_MetodosNumericos.Formularios.Errores
        
         public double ErrorAbsoluto()
         {
-            return Math.Abs(ValorReal - ValorAproximado);
+            double Ea = Math.Abs(ValorReal - ValorAproximado);
+
+            if (Ea < 0)
+            {
+                Ea = Ea * -1;
+                return Ea;
+            }
+            else
+            {
+                return Ea;
+            }
+
         }
 
         public double ErrorRelativo()
         {
-            return Math.Abs((double)(ValorReal - ValorAproximado) / ValorReal);
+            double Er = Math.Abs(ValorReal - ValorAproximado) / Math.Abs(ValorReal) * 100;
+            return Er;
         }
 
 
