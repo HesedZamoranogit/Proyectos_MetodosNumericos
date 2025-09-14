@@ -34,7 +34,7 @@
             pictureBox1 = new PictureBox();
             BtnProximamente3 = new Button();
             BtnProximamente2 = new Button();
-            BtnProximamente = new Button();
+            BtnErrores = new Button();
             BtnTabulacion = new Button();
             pictureBox2 = new PictureBox();
             LblTitulo = new Label();
@@ -104,20 +104,23 @@
             BtnProximamente2.Text = "Proximamente...";
             BtnProximamente2.UseVisualStyleBackColor = true;
             // 
-            // BtnProximamente
+            // BtnErrores
             // 
-            BtnProximamente.FlatStyle = FlatStyle.Flat;
-            BtnProximamente.Font = new Font("HP Simplified Jpan", 10.2F, FontStyle.Bold);
-            BtnProximamente.ForeColor = Color.FromArgb(12, 157, 111);
-            BtnProximamente.Location = new Point(381, 319);
-            BtnProximamente.Name = "BtnProximamente";
-            BtnProximamente.Size = new Size(221, 51);
-            BtnProximamente.TabIndex = 35;
-            BtnProximamente.Text = "Proximamente...";
-            BtnProximamente.UseVisualStyleBackColor = true;
+            BtnErrores.Cursor = Cursors.Hand;
+            BtnErrores.FlatStyle = FlatStyle.Flat;
+            BtnErrores.Font = new Font("HP Simplified Jpan", 10.2F, FontStyle.Bold);
+            BtnErrores.ForeColor = Color.FromArgb(12, 157, 111);
+            BtnErrores.Location = new Point(381, 319);
+            BtnErrores.Name = "BtnErrores";
+            BtnErrores.Size = new Size(221, 51);
+            BtnErrores.TabIndex = 35;
+            BtnErrores.Text = "Errores";
+            BtnErrores.UseVisualStyleBackColor = true;
+            BtnErrores.Click += BtnErrores_Click;
             // 
             // BtnTabulacion
             // 
+            BtnTabulacion.Cursor = Cursors.Hand;
             BtnTabulacion.FlatStyle = FlatStyle.Flat;
             BtnTabulacion.Font = new Font("HP Simplified Jpan", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnTabulacion.ForeColor = Color.FromArgb(12, 157, 111);
@@ -155,10 +158,9 @@
             // 
             // panelContenedor
             // 
-            panelContenedor.Dock = DockStyle.Fill;
-            panelContenedor.Location = new Point(0, 0);
+            panelContenedor.Location = new Point(0, -4);
             panelContenedor.Name = "panelContenedor";
-            panelContenedor.Size = new Size(1225, 682);
+            panelContenedor.Size = new Size(1225, 686);
             panelContenedor.TabIndex = 41;
             panelContenedor.Visible = false;
             // 
@@ -174,7 +176,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(BtnProximamente3);
             Controls.Add(BtnProximamente2);
-            Controls.Add(BtnProximamente);
+            Controls.Add(BtnErrores);
             Controls.Add(BtnTabulacion);
             Controls.Add(pictureBox2);
             Controls.Add(LblTitulo);
@@ -194,7 +196,7 @@
         private PictureBox pictureBox1;
         private Button BtnProximamente3;
         private Button BtnProximamente2;
-        private Button BtnProximamente;
+        private Button BtnErrores;
         private Button BtnTabulacion;
         private PictureBox pictureBox2;
         private Label LblTitulo;

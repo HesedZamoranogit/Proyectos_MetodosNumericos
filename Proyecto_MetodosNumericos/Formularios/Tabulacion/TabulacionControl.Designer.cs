@@ -44,7 +44,7 @@
             label1.BackColor = Color.FromArgb(29, 35, 51);
             label1.Font = new Font("HP Simplified Jpan", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(12, 157, 111);
-            label1.Location = new Point(-3, 83);
+            label1.Location = new Point(-3, 64);
             label1.Name = "label1";
             label1.Size = new Size(1096, 62);
             label1.TabIndex = 0;
@@ -58,7 +58,7 @@
             BtnRegresar.FlatStyle = FlatStyle.Flat;
             BtnRegresar.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnRegresar.ForeColor = Color.FromArgb(12, 157, 111);
-            BtnRegresar.Location = new Point(16, 20);
+            BtnRegresar.Location = new Point(3, 3);
             BtnRegresar.Name = "BtnRegresar";
             BtnRegresar.Size = new Size(117, 48);
             BtnRegresar.TabIndex = 1;

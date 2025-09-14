@@ -1,5 +1,6 @@
 using System.Drawing;               // Color
 using System.Drawing.Drawing2D;
+using Proyecto_MetodosNumericos.Formularios.Errores;
 using Proyecto_MetodosNumericos.Formularios.Tabulacion;
 using Proyecto_MetodosNumericos.Utils;
 
@@ -52,7 +53,7 @@ namespace Proyecto_MetodosNumericos
             );
         }
 
-        
+
 
 
 
@@ -83,5 +84,25 @@ namespace Proyecto_MetodosNumericos
 
         }
 
+        private void ErroresControl_RegresarClicked(object? sender, EventArgs e)
+        {
+            panelContenedor.Controls.Clear();
+            // Aquí puedes cargar otro UserControl, mostrar el menú, etc.
+            // Por ejemplo, para ocultar el panel:
+            panelContenedor.Visible = false;
+        }
+
+        private void BtnErrores_Click(object sender, EventArgs e)
+        {
+            panelContenedor.Visible = true;
+            ErroresControl Errores = new ErroresControl();
+            Errores.Dock = DockStyle.Fill;
+
+            // Suscribe al evento RegresarClicked
+            Errores.RegresarClicked += ErroresControl_RegresarClicked;
+
+            panelContenedor.Controls.Clear();
+            panelContenedor.Controls.Add(Errores);
+        }
     }
 }

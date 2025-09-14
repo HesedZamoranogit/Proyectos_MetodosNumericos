@@ -24,7 +24,16 @@ namespace Proyecto_MetodosNumericos.Formularios.Tabulacion
         public TabulacionControl()
         {
             InitializeComponent();
-           }
+
+            this.DoubleBuffered = true;
+            this.ResizeRedraw = true;
+
+            // Llama al evento Paint
+            this.Paint += new PaintEventHandler(Form_Paint);
+
+
+
+        }
 
         private void Form_Paint(object sender, PaintEventArgs e)
         {
