@@ -1,9 +1,9 @@
 using System.Drawing;               // Color
 using System.Drawing.Drawing2D;
 using Proyecto_MetodosNumericos.Formularios.Errores;
-using Proyecto_MetodosNumericos.Formularios.MetodoFalso;
 using Proyecto_MetodosNumericos.Formularios.Tabulacion;
 using Proyecto_MetodosNumericos.Utils;
+using Proyecto_MetodosNumericos.Formularios.RaicesFunciones;
 
 
 
@@ -80,10 +80,6 @@ namespace Proyecto_MetodosNumericos
             panelContenedor.Visible = false;
         }
 
-        private void FormMenuPrincipal_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void ErroresControl_RegresarClicked(object? sender, EventArgs e)
         {
@@ -93,6 +89,20 @@ namespace Proyecto_MetodosNumericos
             panelContenedor.Visible = false;
         }
 
+        private void RaicesFuncionesControl_RegresarClicked(object? sender, EventArgs e)
+        {
+            panelContenedor.Controls.Clear();
+            // Aquí puedes cargar otro UserControl, mostrar el menú, etc.
+            // Por ejemplo, para ocultar el panel:
+            panelContenedor.Visible = false;
+        }
+
+
+
+        private void FormMenuPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
         private void BtnErrores_Click(object sender, EventArgs e)
         {
             panelContenedor.Visible = true;
@@ -106,15 +116,17 @@ namespace Proyecto_MetodosNumericos
             panelContenedor.Controls.Add(Errores);
         }
 
-        private void BtnMetodoFalso_Click(object sender, EventArgs e)
+        private void BtnRaicesFunciones_Click(object sender, EventArgs e)
         {
             panelContenedor.Visible = true;
-            MetFalsoControl Falso = new MetFalsoControl();
-            Falso.Dock = DockStyle.Fill;
+            RaicesFuncionesControl RaicesFunciones = new RaicesFuncionesControl();
+            RaicesFunciones.Dock = DockStyle.Fill;
 
+            RaicesFunciones.RegresarClicked += RaicesFuncionesControl_RegresarClicked;
 
             panelContenedor.Controls.Clear();
-            panelContenedor.Controls.Add(Falso);
+            panelContenedor.Controls.Add(RaicesFunciones);
+
         }
     }
 }

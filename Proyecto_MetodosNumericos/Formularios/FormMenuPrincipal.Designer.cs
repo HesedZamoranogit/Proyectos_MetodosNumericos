@@ -33,7 +33,7 @@
             pictureBox3 = new PictureBox();
             pictureBox1 = new PictureBox();
             BtnProximamente3 = new Button();
-            BtnMetodoFalso = new Button();
+            BtnRaicesFunciones = new Button();
             BtnErrores = new Button();
             BtnTabulacion = new Button();
             pictureBox2 = new PictureBox();
@@ -92,18 +92,18 @@
             BtnProximamente3.Text = "Proximamente...";
             BtnProximamente3.UseVisualStyleBackColor = true;
             // 
-            // BtnMetodoFalso
+            // BtnRaicesFunciones
             // 
-            BtnMetodoFalso.FlatStyle = FlatStyle.Flat;
-            BtnMetodoFalso.Font = new Font("HP Simplified Jpan", 10.2F, FontStyle.Bold);
-            BtnMetodoFalso.ForeColor = Color.FromArgb(12, 157, 111);
-            BtnMetodoFalso.Location = new Point(649, 319);
-            BtnMetodoFalso.Name = "BtnMetodoFalso";
-            BtnMetodoFalso.Size = new Size(221, 51);
-            BtnMetodoFalso.TabIndex = 36;
-            BtnMetodoFalso.Text = "MetodoFalso";
-            BtnMetodoFalso.UseVisualStyleBackColor = true;
-            BtnMetodoFalso.Click += BtnMetodoFalso_Click;
+            BtnRaicesFunciones.FlatStyle = FlatStyle.Flat;
+            BtnRaicesFunciones.Font = new Font("HP Simplified Jpan", 10.2F, FontStyle.Bold);
+            BtnRaicesFunciones.ForeColor = Color.FromArgb(12, 157, 111);
+            BtnRaicesFunciones.Location = new Point(649, 319);
+            BtnRaicesFunciones.Name = "BtnRaicesFunciones";
+            BtnRaicesFunciones.Size = new Size(221, 51);
+            BtnRaicesFunciones.TabIndex = 36;
+            BtnRaicesFunciones.Text = "RaicesFunciones";
+            BtnRaicesFunciones.UseVisualStyleBackColor = true;
+            BtnRaicesFunciones.Click += BtnRaicesFunciones_Click;
             // 
             // BtnErrores
             // 
@@ -176,12 +176,14 @@
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox1);
             Controls.Add(BtnProximamente3);
-            Controls.Add(BtnMetodoFalso);
+            Controls.Add(BtnRaicesFunciones);
             Controls.Add(BtnErrores);
             Controls.Add(BtnTabulacion);
             Controls.Add(pictureBox2);
             Controls.Add(LblTitulo);
+            FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Name = "FormMenuPrincipal";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Proyecto";
             Load += FormMenuPrincipal_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -196,7 +198,7 @@
         private PictureBox pictureBox3;
         private PictureBox pictureBox1;
         private Button BtnProximamente3;
-        private Button BtnMetodoFalso;
+        private Button BtnRaicesFunciones;
         private Button BtnErrores;
         private Button BtnTabulacion;
         private PictureBox pictureBox2;
