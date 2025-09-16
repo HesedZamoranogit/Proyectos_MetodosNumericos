@@ -55,6 +55,7 @@ namespace Proyecto_MetodosNumericos.Formularios.RaicesFunciones
             dataGridResultados.Columns.Add("Xf", "Xf");
             dataGridResultados.Columns.Add("Xr", "Xr");
             dataGridResultados.Columns.Add("f(Xi)", "f(Xi)");
+            dataGridResultados.Columns.Add("f(Xf)", "f(Xf)");
             dataGridResultados.Columns.Add("f(Xr)", "f(Xr)");
             dataGridResultados.Columns.Add("f(Xi)*f(Xr)", "f(Xi)*f(Xr)");
             dataGridResultados.Columns.Add("Ea", "Ea");
@@ -63,6 +64,7 @@ namespace Proyecto_MetodosNumericos.Formularios.RaicesFunciones
             dataGridResultados.Columns["Xf"].DefaultCellStyle.Format = "F4";
             dataGridResultados.Columns["Xr"].DefaultCellStyle.Format = "F4";
             dataGridResultados.Columns["f(Xi)"].DefaultCellStyle.Format = "F4";
+            dataGridResultados.Columns["f(Xf)"].DefaultCellStyle.Format = "F4";
             dataGridResultados.Columns["f(Xr)"].DefaultCellStyle.Format = "F4";
             dataGridResultados.Columns["f(Xi)*f(Xr)"].DefaultCellStyle.Format = "F4";
             dataGridResultados.Columns["Ea"].DefaultCellStyle.Format = "F4";

@@ -5,9 +5,12 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NCalc;
+using Proyecto_MetodosNumericos.Implementaciones;
 
 namespace Proyecto_MetodosNumericos.Formularios.RaicesFunciones
 {
@@ -25,6 +28,7 @@ namespace Proyecto_MetodosNumericos.Formularios.RaicesFunciones
 
             // Llama al evento Paint
             this.Paint += new PaintEventHandler(Form_Paint);
+
 
 
         }
@@ -51,22 +55,10 @@ namespace Proyecto_MetodosNumericos.Formularios.RaicesFunciones
 
         private void MetodoBiseccionControl_Load(object sender, EventArgs e)
         {
-            dataGridResultados.Columns.Add("Xi", "Xi");
-            dataGridResultados.Columns.Add("Xf", "Xf");
-            dataGridResultados.Columns.Add("Xr", "Xr");
-            dataGridResultados.Columns.Add("f(Xi)", "f(Xi)");
-            dataGridResultados.Columns.Add("f(Xr)", "f(Xr)");
-            dataGridResultados.Columns.Add("f(Xi)*f(Xr)", "f(Xi)*f(Xr)");
-            dataGridResultados.Columns.Add("Ea", "Ea");
-
-            dataGridResultados.Columns["Xi"].DefaultCellStyle.Format = "F4";
-            dataGridResultados.Columns["Xf"].DefaultCellStyle.Format = "F4";
-            dataGridResultados.Columns["Xr"].DefaultCellStyle.Format = "F4";
-            dataGridResultados.Columns["f(Xi)"].DefaultCellStyle.Format = "F4";
-            dataGridResultados.Columns["f(Xr)"].DefaultCellStyle.Format = "F4";
-            dataGridResultados.Columns["f(Xi)*f(Xr)"].DefaultCellStyle.Format = "F4";
-            dataGridResultados.Columns["Ea"].DefaultCellStyle.Format = "F4";
-
+            txtEjemplo.ReadOnly = true;
+            txtEjemplo.BorderStyle = BorderStyle.None;
+            txtEjemplo.BackColor = this.BackColor;
+            txtEjemplo.TabStop = false;
 
 
             // Fuente y colores para celdas
@@ -92,6 +84,82 @@ namespace Proyecto_MetodosNumericos.Formularios.RaicesFunciones
             dataGridResultados.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridResultados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+        }
+        // Replace this line:
+        // RaicesFunciones raicesFunciones = new RaicesFunciones();
+
+        // With the correct type from the namespace, for example:
+        Implementaciones.RaicesFunciones raicesFunciones = new Implementaciones.RaicesFunciones();
+        private void BtnResultados_Click(object sender, EventArgs e)
+        {
+
+            double xi = double.Parse(txtXi.Text);
+            double xf = double.Parse(txtXf.Text);
+            double eamax = double.Parse(txtEa.Text);
+            string funcionTexto = txtFuncion.Text;
+
+
+            if (xi == 0 & xf == 0 & eamax == 0 & funcionTexto == " ")
+            {
+                MessageBox.Show("Los valores no pueden ser nulos llenalos", "Error de entrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            // Asegura multiplicación explícita: 4x -> 4*x
+            funcionTexto = System.Text.RegularExpressions.Regex.Replace(funcionTexto, @"(\d)(x)", "$1*$2");
+
+            // Convierte potencias: x^3 -> Pow(x,3), 4*x^3 -> 4*Pow(x,3)
+            funcionTexto = System.Text.RegularExpressions.Regex.Replace(
+                funcionTexto,
+                @"x\^(\d+)",
+                "Pow(x,$1)"
+            );
+            // También para casos como 4x^3 -> 4*Pow(x,3)
+            funcionTexto = System.Text.RegularExpressions.Regex.Replace(
+                funcionTexto,
+                @"(\d+)\*x\^(\d+)",
+                "$1*Pow(x,$2)"
+            );
+            funcionTexto = System.Text.RegularExpressions.Regex.Replace(
+                funcionTexto,
+                @"(\d+)x\^(\d+)",
+                "$1*Pow(x,$2)"
+            );
+
+            // Convertir texto a función dinámica
+            Func<double, double> funcion = (x) =>
+            {
+                var expr = new NCalc.Expression(funcionTexto);
+                expr.Parameters["x"] = x;
+                var result = expr.Evaluate();
+                if (result is double d)
+                    return d;
+                if (result is int i)
+                    return Convert.ToDouble(i);
+                throw new InvalidOperationException($"La expresión no se pudo evaluar como número. Resultado: {result} (Tipo: {result?.GetType().Name})");
+            };
+
+            var raices = new Implementaciones.RaicesFunciones();
+            var resultado = raices.Biseccion(funcion, xi, xf, eamax);
+
+            // Mostrar en DataGridView
+            dataGridResultados.DataSource = resultado;
+
+            // Formatear columnas después de asignar el DataSource
+            dataGridResultados.Columns["Xi"].DefaultCellStyle.Format = "F4";
+            dataGridResultados.Columns["Xf"].DefaultCellStyle.Format = "F4";
+            dataGridResultados.Columns["Xr"].DefaultCellStyle.Format = "F4";
+            dataGridResultados.Columns["Fxi"].DefaultCellStyle.Format = "F4";
+            dataGridResultados.Columns["Fxr"].DefaultCellStyle.Format = "F4";
+            dataGridResultados.Columns["FxiFxr"].DefaultCellStyle.Format = "F4";
+            dataGridResultados.Columns["Ea"].DefaultCellStyle.Format = "F4";
+        }
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            dataGridResultados.DataSource = null;
+            txtEa.Clear();
+            txtXf.Clear();
+            txtXi.Clear();
         }
     }
 }
