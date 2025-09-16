@@ -31,15 +31,18 @@
             BtnRegresar = new Button();
             label1 = new Label();
             LblValorMax = new Label();
-            txtValorMax = new TextBox();
+            txtEa = new TextBox();
             BtnLimpiar = new Button();
             BtnResultados = new Button();
             panel1 = new Panel();
             dataGridResultados = new DataGridView();
             lblValorInicial = new Label();
             LblValorFinal = new Label();
-            txtValor_i = new TextBox();
-            txtValor_f = new TextBox();
+            txtXi = new TextBox();
+            txtXf = new TextBox();
+            label2 = new Label();
+            txtFuncion = new TextBox();
+            txtEjemplo = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridResultados).BeginInit();
             SuspendLayout();
@@ -81,16 +84,16 @@
             LblValorMax.TabIndex = 20;
             LblValorMax.Text = "Valor Maximo";
             // 
-            // txtValorMax
+            // txtEa
             // 
-            txtValorMax.BackColor = Color.FromArgb(29, 35, 51);
-            txtValorMax.BorderStyle = BorderStyle.None;
-            txtValorMax.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
-            txtValorMax.ForeColor = Color.White;
-            txtValorMax.Location = new Point(393, 156);
-            txtValorMax.Name = "txtValorMax";
-            txtValorMax.Size = new Size(184, 20);
-            txtValorMax.TabIndex = 19;
+            txtEa.BackColor = Color.FromArgb(29, 35, 51);
+            txtEa.BorderStyle = BorderStyle.None;
+            txtEa.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
+            txtEa.ForeColor = Color.White;
+            txtEa.Location = new Point(393, 156);
+            txtEa.Name = "txtEa";
+            txtEa.Size = new Size(184, 20);
+            txtEa.TabIndex = 19;
             // 
             // BtnLimpiar
             // 
@@ -104,6 +107,7 @@
             BtnLimpiar.TabIndex = 18;
             BtnLimpiar.Text = "Limpiar";
             BtnLimpiar.UseVisualStyleBackColor = false;
+            BtnLimpiar.Click += BtnLimpiar_Click;
             // 
             // BtnResultados
             // 
@@ -117,6 +121,7 @@
             BtnResultados.TabIndex = 17;
             BtnResultados.Text = "Resultados";
             BtnResultados.UseVisualStyleBackColor = false;
+            BtnResultados.Click += BtnResultados_Click;
             // 
             // panel1
             // 
@@ -159,43 +164,80 @@
             LblValorFinal.TabIndex = 14;
             LblValorFinal.Text = "Valor Final";
             // 
-            // txtValor_i
+            // txtXi
             // 
-            txtValor_i.BackColor = Color.FromArgb(29, 35, 51);
-            txtValor_i.BorderStyle = BorderStyle.None;
-            txtValor_i.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
-            txtValor_i.ForeColor = Color.White;
-            txtValor_i.Location = new Point(39, 151);
-            txtValor_i.Name = "txtValor_i";
-            txtValor_i.Size = new Size(260, 20);
-            txtValor_i.TabIndex = 13;
+            txtXi.BackColor = Color.FromArgb(29, 35, 51);
+            txtXi.BorderStyle = BorderStyle.None;
+            txtXi.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
+            txtXi.ForeColor = Color.White;
+            txtXi.Location = new Point(39, 151);
+            txtXi.Name = "txtXi";
+            txtXi.Size = new Size(260, 20);
+            txtXi.TabIndex = 13;
             // 
-            // txtValor_f
+            // txtXf
             // 
-            txtValor_f.BackColor = Color.FromArgb(29, 35, 51);
-            txtValor_f.BorderStyle = BorderStyle.None;
-            txtValor_f.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
-            txtValor_f.ForeColor = Color.White;
-            txtValor_f.Location = new Point(40, 218);
-            txtValor_f.Name = "txtValor_f";
-            txtValor_f.Size = new Size(259, 20);
-            txtValor_f.TabIndex = 12;
+            txtXf.BackColor = Color.FromArgb(29, 35, 51);
+            txtXf.BorderStyle = BorderStyle.None;
+            txtXf.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
+            txtXf.ForeColor = Color.White;
+            txtXf.Location = new Point(40, 218);
+            txtXf.Name = "txtXf";
+            txtXf.Size = new Size(259, 20);
+            txtXf.TabIndex = 12;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
+            label2.ForeColor = Color.FromArgb(12, 157, 111);
+            label2.Location = new Point(695, 128);
+            label2.Name = "label2";
+            label2.Size = new Size(83, 25);
+            label2.TabIndex = 23;
+            label2.Text = "Funcion";
+            // 
+            // txtFuncion
+            // 
+            txtFuncion.BackColor = Color.FromArgb(29, 35, 51);
+            txtFuncion.BorderStyle = BorderStyle.None;
+            txtFuncion.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
+            txtFuncion.ForeColor = Color.White;
+            txtFuncion.Location = new Point(695, 156);
+            txtFuncion.Name = "txtFuncion";
+            txtFuncion.Size = new Size(393, 20);
+            txtFuncion.TabIndex = 22;
+            // 
+            // txtEjemplo
+            // 
+            txtEjemplo.BackColor = Color.FromArgb(29, 35, 51);
+            txtEjemplo.BorderStyle = BorderStyle.None;
+            txtEjemplo.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
+            txtEjemplo.ForeColor = Color.Red;
+            txtEjemplo.Location = new Point(805, 123);
+            txtEjemplo.Name = "txtEjemplo";
+            txtEjemplo.Size = new Size(329, 20);
+            txtEjemplo.TabIndex = 24;
+            txtEjemplo.Text = "Ejemplo: x^2*Sqrt(Abs(Cos(x)))-5";
             // 
             // MetodoReglaFalsaControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(46, 60, 84);
+            Controls.Add(txtEjemplo);
+            Controls.Add(label2);
+            Controls.Add(txtFuncion);
             Controls.Add(label1);
             Controls.Add(LblValorMax);
-            Controls.Add(txtValorMax);
+            Controls.Add(txtEa);
             Controls.Add(BtnLimpiar);
             Controls.Add(BtnResultados);
             Controls.Add(panel1);
             Controls.Add(lblValorInicial);
             Controls.Add(LblValorFinal);
-            Controls.Add(txtValor_i);
-            Controls.Add(txtValor_f);
+            Controls.Add(txtXi);
+            Controls.Add(txtXf);
             Controls.Add(BtnRegresar);
             Name = "MetodoReglaFalsaControl";
             Size = new Size(1243, 729);
@@ -220,8 +262,11 @@
         private Label LblValorFinal;
         private TextBox textBox2;
         private TextBox textBox1;
-        private TextBox txtValorMax;
-        private TextBox txtValor_i;
-        private TextBox txtValor_f;
+        private TextBox txtEa;
+        private TextBox txtXi;
+        private TextBox txtXf;
+        private Label label2;
+        private TextBox txtFuncion;
+        private TextBox txtEjemplo;
     }
 }

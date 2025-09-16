@@ -84,5 +84,72 @@ namespace Proyecto_MetodosNumericos.Implementaciones
 
             return listaIteraciones;
         }
+
+        // Método para la Regla Falsa
+        public List<Iteraciones_RFalsa> ReglaFalsa(
+            Func<double, double> f,
+            double xi,
+            double xf,
+            double eamax)
+        {
+            var listaIteraciones = new List<Iteraciones_RFalsa>();
+            Iteraciones = 0;
+            double xr = 0;
+            double ea = 100;
+
+            if (f(xi) * f(xf) >= 0)
+                throw new ArgumentException("La función debe cambiar de signo en el intervalo [xi, xf].");
+
+            while (ea > eamax)
+            {
+                double xrsave = xr;
+                double fxi = f(xi);
+                double fxf = f(xf);
+
+                // Fórmula de la Regla Falsa
+                xr = xf - (fxf * (xi - xf)) / (fxi - fxf);
+
+                double fxr = f(xr);
+
+                if (Iteraciones > 0)
+                {
+                    ea = Math.Abs((xr - xrsave) / xr) * 100;
+                }
+
+                double fxiFxr = fxi * fxr;
+
+                if (fxiFxr < 0)
+                {
+                    xf = xr;
+                }
+                else if (fxiFxr > 0)
+                {
+                    xi = xr;
+                }
+                else
+                {
+                    ea = 0;
+                }
+
+                listaIteraciones.Add(new Iteraciones_RFalsa
+                {
+                    Numero = Iteraciones + 1,
+                    Xi = xi,
+                    Xf = xf,
+                    Fxi = fxi,
+                    Fxf = fxf,
+                    Xr = xr,
+                    Fxr = fxr,
+                    FxiFxr = fxiFxr,
+                    Ea = ea,
+                });
+
+                Iteraciones++;
+            }
+
+            return listaIteraciones;
+        }
+
+
     }
 }

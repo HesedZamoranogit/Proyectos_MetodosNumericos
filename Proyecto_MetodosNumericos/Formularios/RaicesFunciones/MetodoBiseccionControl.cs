@@ -144,7 +144,7 @@ namespace Proyecto_MetodosNumericos.Formularios.RaicesFunciones
             // Mostrar en DataGridView
             dataGridResultados.DataSource = resultado;
 
-            // Formatear columnas después de asignar el DataSource
+            // Mostrar solo 4 digitos
             dataGridResultados.Columns["Xi"].DefaultCellStyle.Format = "F4";
             dataGridResultados.Columns["Xf"].DefaultCellStyle.Format = "F4";
             dataGridResultados.Columns["Xr"].DefaultCellStyle.Format = "F4";
