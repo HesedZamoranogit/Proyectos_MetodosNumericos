@@ -29,9 +29,48 @@ namespace Proyecto_MetodosNumericos.Formularios.RaicesFunciones
             // Llama al evento Paint
             this.Paint += new PaintEventHandler(Form_Paint);
 
+            var funciones = new List<string>
+            {
+                    "4x^3 - 6x^2 + 7x - 2.3",                // Nueva función agregada
+                    "x^3 - x - 2",               // Nueva función agregada
+                    "cos(x) - x",                            // Mantienes esta
+                    "exp(x) - 3*x"
+            };
+            CmbFuncion.DataSource = funciones;
 
-
+            CmbFuncion.SelectedIndexChanged += CmbFuncion_SelectedIndexChanged;
         }
+
+
+
+        private void CmbFuncion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (CmbFuncion.SelectedItem?.ToString())
+            {
+                case "4x^3 - 6x^2 + 7x - 2.3":
+                    txtXi.Text = "0";
+                    txtXf.Text = "1";
+                    break;
+                case "x^3 - x - 2":
+                    txtXi.Text = "1";
+                    txtXf.Text = "2";
+                    break;
+                case "cos(x) - x":
+                    txtXi.Text = "0";
+                    txtXf.Text = "1";
+                    break;
+                case "exp(x) - 3*x":
+                    txtXi.Text = "0";
+                    txtXf.Text = "1";
+                    break;
+                default:
+                    txtXi.Text = "";
+                    txtXf.Text = "";
+                    break;
+            }
+        }
+
+
         //FUNCION PARA EL GRADENTE
         private void Form_Paint(object sender, PaintEventArgs e)
         {
@@ -55,10 +94,7 @@ namespace Proyecto_MetodosNumericos.Formularios.RaicesFunciones
 
         private void MetodoBiseccionControl_Load(object sender, EventArgs e)
         {
-            txtEjemplo.ReadOnly = true;
-            txtEjemplo.BorderStyle = BorderStyle.None;
-            txtEjemplo.BackColor = this.BackColor;
-            txtEjemplo.TabStop = false;
+         
 
 
             // Fuente y colores para celdas
@@ -92,17 +128,22 @@ namespace Proyecto_MetodosNumericos.Formularios.RaicesFunciones
         Implementaciones.RaicesFunciones raicesFunciones = new Implementaciones.RaicesFunciones();
         private void BtnResultados_Click(object sender, EventArgs e)
         {
-
+ // Validar campos vacíos antes de convertir
+            if (string.IsNullOrWhiteSpace(txtXi.Text) ||
+                string.IsNullOrWhiteSpace(txtXf.Text) ||
+                string.IsNullOrWhiteSpace(txtEa.Text))
+            {
+                MessageBox.Show("Debes llenar todos los campos de entrada.", "Error de entrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             double xi = double.Parse(txtXi.Text);
             double xf = double.Parse(txtXf.Text);
             double eamax = double.Parse(txtEa.Text);
-            string funcionTexto = txtFuncion.Text;
+            //string funcionTexto = txtFuncion.Text;
 
+            string funcionTexto = CmbFuncion.SelectedItem.ToString() ?? " ";
 
-            if (xi == 0 & xf == 0 & eamax == 0 & funcionTexto == " ")
-            {
-                MessageBox.Show("Los valores no pueden ser nulos llenalos", "Error de entrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+           
 
             // Asegura multiplicación explícita: 4x -> 4*x
             funcionTexto = System.Text.RegularExpressions.Regex.Replace(funcionTexto, @"(\d)(x)", "$1*$2");
@@ -124,19 +165,10 @@ namespace Proyecto_MetodosNumericos.Formularios.RaicesFunciones
                 @"(\d+)x\^(\d+)",
                 "$1*Pow(x,$2)"
             );
+            
 
-            // Convertir texto a función dinámica
-            Func<double, double> funcion = (x) =>
-            {
-                var expr = new NCalc.Expression(funcionTexto);
-                expr.Parameters["x"] = x;
-                var result = expr.Evaluate();
-                if (result is double d)
-                    return d;
-                if (result is int i)
-                    return Convert.ToDouble(i);
-                throw new InvalidOperationException($"La expresión no se pudo evaluar como número. Resultado: {result} (Tipo: {result?.GetType().Name})");
-            };
+            Func<double, double> funcion = Proyecto_MetodosNumericos.Utils.FuncionHelper.CrearFuncion(funcionTexto);
+
 
             var raices = new Implementaciones.RaicesFunciones();
             var resultado = raices.Biseccion(funcion, xi, xf, eamax);
@@ -160,6 +192,11 @@ namespace Proyecto_MetodosNumericos.Formularios.RaicesFunciones
             txtEa.Clear();
             txtXf.Clear();
             txtXi.Clear();
+        }
+
+        private void dataGridResultados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

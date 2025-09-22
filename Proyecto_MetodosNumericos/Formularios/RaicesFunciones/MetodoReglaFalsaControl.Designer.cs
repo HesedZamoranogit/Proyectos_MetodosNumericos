@@ -42,7 +42,7 @@
             txtXf = new TextBox();
             label2 = new Label();
             txtFuncion = new TextBox();
-            txtEjemplo = new TextBox();
+            CmbFuncion = new ComboBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridResultados).BeginInit();
             SuspendLayout();
@@ -78,7 +78,7 @@
             LblValorMax.AutoSize = true;
             LblValorMax.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
             LblValorMax.ForeColor = Color.FromArgb(12, 157, 111);
-            LblValorMax.Location = new Point(393, 128);
+            LblValorMax.Location = new Point(393, 123);
             LblValorMax.Name = "LblValorMax";
             LblValorMax.Size = new Size(138, 25);
             LblValorMax.TabIndex = 20;
@@ -90,7 +90,7 @@
             txtEa.BorderStyle = BorderStyle.None;
             txtEa.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
             txtEa.ForeColor = Color.White;
-            txtEa.Location = new Point(393, 156);
+            txtEa.Location = new Point(393, 151);
             txtEa.Name = "txtEa";
             txtEa.Size = new Size(184, 20);
             txtEa.TabIndex = 19;
@@ -129,7 +129,7 @@
             panel1.Controls.Add(dataGridResultados);
             panel1.Location = new Point(39, 268);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1159, 435);
+            panel1.Size = new Size(1159, 418);
             panel1.TabIndex = 16;
             // 
             // dataGridResultados
@@ -139,7 +139,7 @@
             dataGridResultados.Location = new Point(19, 24);
             dataGridResultados.Name = "dataGridResultados";
             dataGridResultados.RowHeadersWidth = 51;
-            dataGridResultados.Size = new Size(1122, 384);
+            dataGridResultados.Size = new Size(1122, 374);
             dataGridResultados.TabIndex = 5;
             // 
             // lblValorInicial
@@ -191,7 +191,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
             label2.ForeColor = Color.FromArgb(12, 157, 111);
-            label2.Location = new Point(695, 128);
+            label2.Location = new Point(261, 36);
             label2.Name = "label2";
             label2.Size = new Size(83, 25);
             label2.TabIndex = 23;
@@ -203,29 +203,30 @@
             txtFuncion.BorderStyle = BorderStyle.None;
             txtFuncion.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
             txtFuncion.ForeColor = Color.White;
-            txtFuncion.Location = new Point(695, 156);
+            txtFuncion.Location = new Point(40, 100);
             txtFuncion.Name = "txtFuncion";
             txtFuncion.Size = new Size(393, 20);
             txtFuncion.TabIndex = 22;
+            txtFuncion.Visible = false;
             // 
-            // txtEjemplo
+            // CmbFuncion
             // 
-            txtEjemplo.BackColor = Color.FromArgb(29, 35, 51);
-            txtEjemplo.BorderStyle = BorderStyle.None;
-            txtEjemplo.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
-            txtEjemplo.ForeColor = Color.Red;
-            txtEjemplo.Location = new Point(805, 123);
-            txtEjemplo.Name = "txtEjemplo";
-            txtEjemplo.Size = new Size(329, 20);
-            txtEjemplo.TabIndex = 24;
-            txtEjemplo.Text = "Ejemplo: x^2*Sqrt(Abs(Cos(x)))-5";
+            CmbFuncion.BackColor = Color.FromArgb(29, 35, 51);
+            CmbFuncion.FlatStyle = FlatStyle.Flat;
+            CmbFuncion.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
+            CmbFuncion.ForeColor = SystemColors.MenuBar;
+            CmbFuncion.FormattingEnabled = true;
+            CmbFuncion.Location = new Point(261, 64);
+            CmbFuncion.Name = "CmbFuncion";
+            CmbFuncion.Size = new Size(376, 33);
+            CmbFuncion.TabIndex = 28;
             // 
             // MetodoReglaFalsaControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(46, 60, 84);
-            Controls.Add(txtEjemplo);
+            Controls.Add(CmbFuncion);
             Controls.Add(label2);
             Controls.Add(txtFuncion);
             Controls.Add(label1);
@@ -267,6 +268,6 @@
         private TextBox txtXf;
         private Label label2;
         private TextBox txtFuncion;
-        private TextBox txtEjemplo;
+        private ComboBox CmbFuncion;
     }
 }

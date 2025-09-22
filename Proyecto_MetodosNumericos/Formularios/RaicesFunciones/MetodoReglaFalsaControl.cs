@@ -27,7 +27,45 @@ namespace Proyecto_MetodosNumericos.Formularios.RaicesFunciones
             // Llama al evento Paint
             this.Paint += new PaintEventHandler(Form_Paint);
 
+            var funciones = new List<string>
+            {
+                "x^3 - x - 2",                // Nueva función agregada
+                "x^2*Sqrt(Abs(Cos(x)))-5",               // Nueva función agregada
+                "cos(x) - x",                            // Mantienes esta
+                "exp(x) - 3*x"                           // Mantienes esta
+            };
+            CmbFuncion.DataSource = funciones;
 
+            CmbFuncion.SelectedIndexChanged += CmbFuncion_SelectedIndexChanged;
+        }
+
+
+
+        private void CmbFuncion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (CmbFuncion.SelectedItem?.ToString())
+            {
+                case "x^3 - x - 2":
+                    txtXi.Text = "1";
+                    txtXf.Text = "2";
+                    break;
+                case "x^2*Sqrt(Abs(Cos(x)))-5":
+                    txtXi.Text = "2";
+                    txtXf.Text = "3";
+                    break;
+                case "cos(x) - x":
+                    txtXi.Text = "0";
+                    txtXf.Text = "1";
+                    break;
+                case "exp(x) - 3*x":
+                    txtXi.Text = "0";
+                    txtXf.Text = "1";
+                    break;
+                default:
+                    txtXi.Text = "";
+                    txtXf.Text = "";
+                    break;
+            }
         }
         //FUNCION PARA EL GRADENTE
         private void Form_Paint(object sender, PaintEventArgs e)
@@ -81,56 +119,41 @@ namespace Proyecto_MetodosNumericos.Formularios.RaicesFunciones
 
         private void BtnResultados_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtXi.Text) ||
+                string.IsNullOrWhiteSpace(txtXf.Text) ||
+                string.IsNullOrWhiteSpace(txtEa.Text))
+            {
+                MessageBox.Show("Debes llenar todos los campos de entrada.", "Error de entrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             double xi = double.Parse(txtXi.Text);
             double xf = double.Parse(txtXf.Text);
             double eamax = double.Parse(txtEa.Text);
-            string funcionTexto = txtFuncion.Text;
+            //string funcionTexto = txtFuncion.Text;
 
-
-            if (xi == 0 & xf == 0 & eamax == 0 & funcionTexto == " ")
+            string funcionTexto = CmbFuncion.SelectedItem?.ToString() ?? "";
+            if (string.IsNullOrEmpty(funcionTexto))
             {
-                MessageBox.Show("Los valores no pueden ser nulos llenalos", "Error de entrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                MessageBox.Show("Selecciona una función válida.", "Error de entrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }// Validar campos vacíos antes de convertir
+            
+            Func<double, double> funcion = Proyecto_MetodosNumericos.Utils.FuncionHelper.CrearFuncion(funcionTexto);
 
-            // Asegura multiplicación explícita: 4x -> 4*x
-            funcionTexto = System.Text.RegularExpressions.Regex.Replace(funcionTexto, @"(\d)(x)", "$1*$2");
-
-            // Convierte potencias: x^3 -> Pow(x,3), 4*x^3 -> 4*Pow(x,3)
-            funcionTexto = System.Text.RegularExpressions.Regex.Replace(
-                funcionTexto,
-                @"x\^(\d+)",
-                "Pow(x,$1)"
-            );
-            // También para casos como 4x^3 -> 4*Pow(x,3)
-            funcionTexto = System.Text.RegularExpressions.Regex.Replace(
-                funcionTexto,
-                @"(\d+)\*x\^(\d+)",
-                "$1*Pow(x,$2)"
-            );
-            funcionTexto = System.Text.RegularExpressions.Regex.Replace(
-                funcionTexto,
-                @"(\d+)x\^(\d+)",
-                "$1*Pow(x,$2)"
-            );
-
-            funcionTexto = Regex.Replace(funcionTexto, @"\bsqrt\b", "Sqrt", RegexOptions.IgnoreCase);
-            funcionTexto = Regex.Replace(funcionTexto, @"\babs\b", "Abs", RegexOptions.IgnoreCase);
-            funcionTexto = Regex.Replace(funcionTexto, @"\bcos\b", "Cos", RegexOptions.IgnoreCase);
-            // Convertir texto a función dinámica
-            Func<double, double> funcion = (x) =>
-            {
-                var expr = new NCalc.Expression(funcionTexto);
-                expr.Parameters["x"] = x;
-                var result = expr.Evaluate();
-                if (result is double d)
-                    return d;
-                if (result is int i)
-                    return Convert.ToDouble(i);
-                throw new InvalidOperationException($"La expresión no se pudo evaluar como número. Resultado: {result} (Tipo: {result?.GetType().Name})");
-            };
-
-            var raices = new Implementaciones.RaicesFunciones();
+            var raices = new Proyecto_MetodosNumericos.Implementaciones.RaicesFunciones();
             var resultado = raices.ReglaFalsa(funcion, xi, xf, eamax);
+
+            try
+            {
+                resultado = raices.ReglaFalsa(funcion, xi, xf, eamax);
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Error de intervalo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dataGridResultados.DataSource = null; // Limpia la tabla
+                return;
+            }
 
             // Mostrar en DataGridView
             dataGridResultados.DataSource = resultado;

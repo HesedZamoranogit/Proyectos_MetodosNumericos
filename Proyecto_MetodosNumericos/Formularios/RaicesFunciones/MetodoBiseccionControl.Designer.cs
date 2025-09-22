@@ -42,7 +42,7 @@
             label1 = new Label();
             label2 = new Label();
             txtFuncion = new TextBox();
-            txtEjemplo = new TextBox();
+            CmbFuncion = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dataGridResultados).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -114,6 +114,7 @@
             dataGridResultados.RowHeadersWidth = 51;
             dataGridResultados.Size = new Size(1122, 384);
             dataGridResultados.TabIndex = 5;
+            dataGridResultados.CellContentClick += dataGridResultados_CellContentClick;
             // 
             // panel1
             // 
@@ -130,7 +131,7 @@
             BtnResultados.FlatStyle = FlatStyle.Flat;
             BtnResultados.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
             BtnResultados.ForeColor = Color.FromArgb(12, 157, 111);
-            BtnResultados.Location = new Point(647, 213);
+            BtnResultados.Location = new Point(550, 213);
             BtnResultados.Name = "BtnResultados";
             BtnResultados.Size = new Size(192, 50);
             BtnResultados.TabIndex = 7;
@@ -144,7 +145,7 @@
             BtnLimpiar.FlatStyle = FlatStyle.Flat;
             BtnLimpiar.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
             BtnLimpiar.ForeColor = Color.FromArgb(12, 157, 111);
-            BtnLimpiar.Location = new Point(464, 213);
+            BtnLimpiar.Location = new Point(389, 213);
             BtnLimpiar.Name = "BtnLimpiar";
             BtnLimpiar.Size = new Size(130, 50);
             BtnLimpiar.TabIndex = 8;
@@ -158,7 +159,7 @@
             txtEa.BorderStyle = BorderStyle.None;
             txtEa.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
             txtEa.ForeColor = Color.White;
-            txtEa.Location = new Point(393, 164);
+            txtEa.Location = new Point(473, 164);
             txtEa.Name = "txtEa";
             txtEa.Size = new Size(184, 20);
             txtEa.TabIndex = 9;
@@ -168,7 +169,7 @@
             LblValorMax.AutoSize = true;
             LblValorMax.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
             LblValorMax.ForeColor = Color.FromArgb(12, 157, 111);
-            LblValorMax.Location = new Point(393, 136);
+            LblValorMax.Location = new Point(469, 131);
             LblValorMax.Name = "LblValorMax";
             LblValorMax.Size = new Size(138, 25);
             LblValorMax.TabIndex = 10;
@@ -191,7 +192,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
             label2.ForeColor = Color.FromArgb(12, 157, 111);
-            label2.Location = new Point(696, 136);
+            label2.Location = new Point(225, 44);
             label2.Name = "label2";
             label2.Size = new Size(83, 25);
             label2.TabIndex = 13;
@@ -203,29 +204,30 @@
             txtFuncion.BorderStyle = BorderStyle.None;
             txtFuncion.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
             txtFuncion.ForeColor = Color.White;
-            txtFuncion.Location = new Point(696, 164);
+            txtFuncion.Location = new Point(39, 108);
             txtFuncion.Name = "txtFuncion";
             txtFuncion.Size = new Size(404, 20);
             txtFuncion.TabIndex = 12;
+            txtFuncion.Visible = false;
             // 
-            // txtEjemplo
+            // CmbFuncion
             // 
-            txtEjemplo.BackColor = Color.FromArgb(46, 60, 84);
-            txtEjemplo.BorderStyle = BorderStyle.None;
-            txtEjemplo.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
-            txtEjemplo.ForeColor = Color.Crimson;
-            txtEjemplo.Location = new Point(799, 136);
-            txtEjemplo.Name = "txtEjemplo";
-            txtEjemplo.Size = new Size(314, 20);
-            txtEjemplo.TabIndex = 15;
-            txtEjemplo.Text = "Ejemplo: 4x^3 - 6x^2 + 7x - 2.3";
+            CmbFuncion.BackColor = Color.FromArgb(29, 35, 51);
+            CmbFuncion.FlatStyle = FlatStyle.Flat;
+            CmbFuncion.Font = new Font("HP Simplified Jpan", 12F, FontStyle.Bold);
+            CmbFuncion.ForeColor = SystemColors.MenuBar;
+            CmbFuncion.FormattingEnabled = true;
+            CmbFuncion.Location = new Point(225, 72);
+            CmbFuncion.Name = "CmbFuncion";
+            CmbFuncion.Size = new Size(348, 33);
+            CmbFuncion.TabIndex = 19;
             // 
             // MetodoBiseccionControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(46, 60, 84);
-            Controls.Add(txtEjemplo);
+            Controls.Add(CmbFuncion);
             Controls.Add(label2);
             Controls.Add(txtFuncion);
             Controls.Add(label1);
@@ -267,6 +269,6 @@
         private TextBox txtXi;
         private Label label2;
         private TextBox txtFuncion;
-        private TextBox txtEjemplo;
+        private ComboBox CmbFuncion;
     }
 }
