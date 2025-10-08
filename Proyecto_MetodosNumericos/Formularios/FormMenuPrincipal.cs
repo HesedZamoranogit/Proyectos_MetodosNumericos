@@ -128,5 +128,10 @@ namespace Proyecto_MetodosNumericos
             panelContenedor.Controls.Add(RaicesFunciones);
 
         }
+
+        private void panelContenedor_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

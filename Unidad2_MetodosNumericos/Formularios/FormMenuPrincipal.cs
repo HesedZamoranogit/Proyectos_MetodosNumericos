@@ -1,5 +1,6 @@
 using System.Drawing;               // Color
 using System.Drawing.Drawing2D;
+using Unidad2_MetodosNumericos.Formularios;
 
 
 
@@ -38,67 +39,20 @@ namespace Proyecto_MetodosNumericos
             }
         }
 
-        //EVENTOS DE LOS BOTONES GRADENTE
-        private void Proyectos_Load(object sender, EventArgs e)
-        {
-            var gradenDesign = new GradenDesign();
-            gradenDesign.AplicarGradiente(
-                boton: BtnGauss,
-                colorSuperior: Color.FromArgb(110, 79, 148),
-                colorInferior: Color.FromArgb(29, 35, 51),
-                direccion: LinearGradientMode.Vertical
-            );
-        }
-
-
-
-
-
-        private void BtnTabulacion_Click(object sender, EventArgs e)
-        {
-            panelContenedor.Visible = true;
-            TabulacionControl tabulacionControl = new TabulacionControl();
-            tabulacionControl.Dock = DockStyle.Fill;
-
-            // Suscribe al evento RegresarClicked
-            tabulacionControl.RegresarClicked += TabulacionControl_RegresarClicked;
-
-            panelContenedor.Controls.Clear();
-            panelContenedor.Controls.Add(tabulacionControl);
-        }
-
-        // Maneja el evento de regresar
-        private void TabulacionControl_RegresarClicked(object? sender, EventArgs e)
-        {
-            panelContenedor.Controls.Clear();
-            // Aquí puedes cargar otro UserControl, mostrar el menú, etc.
-            // Por ejemplo, para ocultar el panel:
-            panelContenedor.Visible = false;
-        }
-
-
-        private void ErroresControl_RegresarClicked(object? sender, EventArgs e)
-        {
-            panelContenedor.Controls.Clear();
-            // Aquí puedes cargar otro UserControl, mostrar el menú, etc.
-            // Por ejemplo, para ocultar el panel:
-            panelContenedor.Visible = false;
-        }
-
-        private void RaicesFuncionesControl_RegresarClicked(object? sender, EventArgs e)
-        {
-            panelContenedor.Controls.Clear();
-            // Aquí puedes cargar otro UserControl, mostrar el menú, etc.
-            // Por ejemplo, para ocultar el panel:
-            panelContenedor.Visible = false;
-        }
-
-
 
         private void FormMenuPrincipal_Load(object sender, EventArgs e)
         {
 
         }
+
+        private void MetodoGauss_RegresarClicked(object sender, EventArgs e)
+        {
+            // Aquí defines qué pasa al regresar, por ejemplo:
+            panelContenedor.Controls.Clear();
+            panelContenedor.Visible = false;
+        }
+
+        /*
         private void BtnErrores_Click(object sender, EventArgs e)
         {
             panelContenedor.Visible = true;
@@ -123,16 +77,20 @@ namespace Proyecto_MetodosNumericos
             panelContenedor.Controls.Clear();
             panelContenedor.Controls.Add(RaicesFunciones);
 
-        }
+        }*/
 
         private void BtnGauss_Click(object sender, EventArgs e)
         {
 
+            panelContenedor.Visible = true;
+            Metodo_Gauss G_J = new Metodo_Gauss();
+            G_J.Dock = DockStyle.Fill;
+
+            G_J.RegresarClicked += MetodoGauss_RegresarClicked;
+            panelContenedor.Controls.Clear();
+            panelContenedor.Controls.Add(G_J);
+
         }
 
-        private void BtnGauss_Jordan_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

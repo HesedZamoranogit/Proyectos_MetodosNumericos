@@ -198,6 +198,7 @@
             panelContenedor.Size = new Size(1243, 729);
             panelContenedor.TabIndex = 16;
             panelContenedor.Visible = false;
+            panelContenedor.Paint += panelContenedor_Paint;
             // 
             // RaicesFuncionesControl
             // 

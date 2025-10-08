@@ -37,8 +37,8 @@
             BtnGauss = new Button();
             pictureBox2 = new PictureBox();
             LblTitulo = new Label();
-            panelContenedor = new Panel();
             button1 = new Button();
+            panelContenedor = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -62,7 +62,7 @@
             pictureBox3.BackColor = Color.Transparent;
             pictureBox3.BackgroundImageLayout = ImageLayout.None;
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(866, 151);
+            pictureBox3.Location = new Point(1078, 206);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(135, 89);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
@@ -74,7 +74,7 @@
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.BackgroundImageLayout = ImageLayout.None;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(649, 22);
+            pictureBox1.Location = new Point(343, 524);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(114, 56);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -97,6 +97,7 @@
             // BtnGauss_Jordan
             // 
             BtnGauss_Jordan.Cursor = Cursors.Hand;
+            BtnGauss_Jordan.Enabled = false;
             BtnGauss_Jordan.FlatStyle = FlatStyle.Flat;
             BtnGauss_Jordan.Font = new Font("HP Simplified Jpan", 10.2F, FontStyle.Bold);
             BtnGauss_Jordan.ForeColor = Color.FromArgb(12, 157, 111);
@@ -104,9 +105,8 @@
             BtnGauss_Jordan.Name = "BtnGauss_Jordan";
             BtnGauss_Jordan.Size = new Size(240, 51);
             BtnGauss_Jordan.TabIndex = 35;
-            BtnGauss_Jordan.Text = "Metodos de Gauss - Jordan";
+            BtnGauss_Jordan.Text = "...";
             BtnGauss_Jordan.UseVisualStyleBackColor = true;
-            BtnGauss_Jordan.Click += BtnGauss_Jordan_Click;
             // 
             // BtnGauss
             // 
@@ -118,7 +118,7 @@
             BtnGauss.Name = "BtnGauss";
             BtnGauss.Size = new Size(221, 51);
             BtnGauss.TabIndex = 34;
-            BtnGauss.Text = "Metodo de Gauss";
+            BtnGauss.Text = "Metodo de Gauss/Jordan";
             BtnGauss.UseVisualStyleBackColor = true;
             BtnGauss.Click += BtnGauss_Click;
             // 
@@ -146,14 +146,6 @@
             LblTitulo.Text = "PROYECTOS METODOS NUMERICOS\r\nUNIDAD 2\r\n";
             LblTitulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // panelContenedor
-            // 
-            panelContenedor.Location = new Point(0, 499);
-            panelContenedor.Name = "panelContenedor";
-            panelContenedor.Size = new Size(1225, 183);
-            panelContenedor.TabIndex = 41;
-            panelContenedor.Visible = false;
-            // 
             // button1
             // 
             button1.Enabled = false;
@@ -167,14 +159,22 @@
             button1.Text = "...";
             button1.UseVisualStyleBackColor = true;
             // 
+            // panelContenedor
+            // 
+            panelContenedor.Location = new Point(-9, -5);
+            panelContenedor.Name = "panelContenedor";
+            panelContenedor.Size = new Size(1240, 687);
+            panelContenedor.TabIndex = 43;
+            panelContenedor.Visible = false;
+            // 
             // FormMenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(46, 60, 84);
             ClientSize = new Size(1225, 682);
-            Controls.Add(button1);
             Controls.Add(panelContenedor);
+            Controls.Add(button1);
             Controls.Add(BtnProximamente4);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox1);
@@ -204,7 +204,7 @@
         private Button BtnGauss;
         private PictureBox pictureBox2;
         private Label LblTitulo;
-        private Panel panelContenedor;
         private Button button1;
+        private Panel panelContenedor;
     }
 }

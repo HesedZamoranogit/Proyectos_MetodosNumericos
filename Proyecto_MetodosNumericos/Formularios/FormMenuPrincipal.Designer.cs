@@ -164,6 +164,7 @@
             panelContenedor.Size = new Size(1225, 685);
             panelContenedor.TabIndex = 41;
             panelContenedor.Visible = false;
+            panelContenedor.Paint += panelContenedor_Paint;
             // 
             // FormMenuPrincipal
             // 

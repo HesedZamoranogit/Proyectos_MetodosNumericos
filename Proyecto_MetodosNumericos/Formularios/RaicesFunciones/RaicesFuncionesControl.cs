@@ -164,23 +164,23 @@ namespace Proyecto_MetodosNumericos.Formularios.RaicesFunciones
         private void BtnComparacion_Click(object sender, EventArgs e)
         {
 
-            double Bxi = 0; 
-            double Bxf = 1; 
-            string BfuncionTexto = "4x^3 - 6x^2 + 7x - 2.3"; 
+            double Bxi = 0;
+            double Bxf = 1;
+            string BfuncionTexto = "4x^3 - 6x^2 + 7x - 2.3";
 
-            double Rxi = 2; 
-            double Rxf = 3; 
+            double Rxi = 2;
+            double Rxf = 3;
             string RfunctionTexto = "x^2*Sqrt(Abs(Cos(x)))-5";
             double Nxi = 0;
 
-            double x1 = 2; 
-            double x2 = 3; 
+            double x1 = 2;
+            double x2 = 3;
             double eamax = 0.1;
-           
 
-          Func<double, double> Bfuncion = Proyecto_MetodosNumericos.Utils.FuncionHelper.CrearFuncion(BfuncionTexto);
+
+            Func<double, double> Bfuncion = Proyecto_MetodosNumericos.Utils.FuncionHelper.CrearFuncion(BfuncionTexto);
             Func<double, double> Rfuncion = Proyecto_MetodosNumericos.Utils.FuncionHelper.CrearFuncion(RfunctionTexto);
-           
+
 
             var raices = new Proyecto_MetodosNumericos.Implementaciones.RaicesFunciones();
 
@@ -231,6 +231,11 @@ namespace Proyecto_MetodosNumericos.Formularios.RaicesFunciones
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             dgvComparacion.DataSource = null;
+        }
+
+        private void panelContenedor_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 
