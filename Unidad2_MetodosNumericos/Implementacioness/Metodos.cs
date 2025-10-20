@@ -112,6 +112,100 @@ namespace Unidad2_MetodosNumericos.Implementacioness
             return x;
         }
 
+        public double[] GaussSeidel(double[,] A, double[] b, int maxIter = 100, double tol = 1e-8)
+        {
+            int n = A.GetLength(0);
+            double[] x = new double[n];
+            for (int iter = 0; iter < maxIter; iter++)
+            {
+                double[] xOld = (double[])x.Clone();
+                for (int i = 0; i < n; i++)
+                {
+                    double sum = 0;
+                    for (int j = 0; j < n; j++)
+                    {
+                        if (j != i)
+                            sum += A[i, j] * x[j];
+                    }
+                    x[i] = (b[i] - sum) / A[i, i];
+                }
+                // Verifica convergencia
+                double error = 0;
+                for (int i = 0; i < n; i++)
+                    error += Math.Abs(x[i] - xOld[i]);
+                if (error < tol)
+                    break;
+            }
+            return x;
+        }
 
+        public List<GaussSeidelIteracion> GaussSeidelIterativo(double[,] A, double[] b, int maxIter = 100, double tol = 1e-3)
+        {
+            int n = A.GetLength(0);
+            double[] x = new double[n];
+            var iteraciones = new List<GaussSeidelIteracion>();
+
+            for (int iter = 0; iter < maxIter; iter++)
+            {
+                double[] xOld = (double[])x.Clone();
+                double[] ea = new double[n];
+
+                for (int i = 0; i < n; i++)
+                {
+                    double sum = 0;
+                    for (int j = 0; j < n; j++)
+                    {
+                        if (j != i)
+                            sum += A[i, j] * x[j];
+                    }
+                    x[i] = (b[i] - sum) / A[i, i];
+
+                    ea[i] = iter == 0 ? 1.0 : Math.Abs((x[i] - xOld[i]) / (x[i] != 0 ? x[i] : 1)) * 100.0;
+                }
+
+                iteraciones.Add(new GaussSeidelIteracion
+                {
+                    X = (double[])x.Clone(),
+                    Ea = (double[])ea.Clone()
+                });
+
+                if (ea.All(e => e < tol))
+                    break;
+            }
+            return iteraciones;
+        }
+
+        public static double[,] RandomDiagonallyDominantAugmented(int n, int min = -5, int max = 5)
+        {
+            if (n < 1)
+                throw new ArgumentException("n debe ser > 0");
+            var rnd = new Random();
+            var Ab = new double[n, n + 1];
+
+            for (int i = 0; i < n; i++)
+            {
+                double rowsum = 0.0;
+                for (int j = 0; j < n; j++)
+                {
+                    if (i == j) continue;
+                    int v = rnd.Next(min, max + 1);
+                    Ab[i, j] = v;
+                    rowsum += Math.Abs(v);
+                }
+                // Diagonal dominante estricta
+                Ab[i, i] = rowsum + rnd.Next(1, 6);
+                // termino independiente
+                Ab[i, n] = rnd.Next(min * 2, max * 2 + 1);
+            }
+            return Ab;
+        }
+        public class GaussSeidelIteracion
+        {
+            public double[] X { get; set; }
+            public double[] Ea { get; set; }
+        }
     }
 }
+
+
+

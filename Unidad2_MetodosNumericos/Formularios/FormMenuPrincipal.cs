@@ -1,6 +1,7 @@
 using System.Drawing;               // Color
 using System.Drawing.Drawing2D;
 using Unidad2_MetodosNumericos.Formularios;
+using Unidad2_MetodosNumericos.Formularios.MetodoGauss__Jordan;
 
 
 
@@ -43,6 +44,12 @@ namespace Proyecto_MetodosNumericos
         private void FormMenuPrincipal_Load(object sender, EventArgs e)
         {
 
+        }
+        private void MetodoGaussSeidel_RegresarClicked(object sender, EventArgs e)
+        {
+            // Aquí defines qué pasa al regresar, por ejemplo:
+            panelContenedor.Controls.Clear();
+            panelContenedor.Visible = false;
         }
 
         private void MetodoGauss_RegresarClicked(object sender, EventArgs e)
@@ -92,5 +99,16 @@ namespace Proyecto_MetodosNumericos
 
         }
 
+        private void BtnGauss_Seidel_Click(object sender, EventArgs e)
+        {
+
+            panelContenedor.Visible = true;
+            Metodo_Gauss_Seidel G_J = new Metodo_Gauss_Seidel();
+            G_J.Dock = DockStyle.Fill;
+
+            G_J.RegresarClicked += MetodoGaussSeidel_RegresarClicked;
+            panelContenedor.Controls.Clear();
+            panelContenedor.Controls.Add(G_J);
+        }
     }
 }
