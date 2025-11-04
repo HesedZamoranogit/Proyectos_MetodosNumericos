@@ -119,10 +119,9 @@
             // 
             // panelContenedor
             // 
-            panelContenedor.Dock = DockStyle.Fill;
-            panelContenedor.Location = new Point(0, 0);
+            panelContenedor.Location = new Point(0, 504);
             panelContenedor.Name = "panelContenedor";
-            panelContenedor.Size = new Size(1225, 682);
+            panelContenedor.Size = new Size(1225, 178);
             panelContenedor.TabIndex = 43;
             panelContenedor.Visible = false;
             // 
