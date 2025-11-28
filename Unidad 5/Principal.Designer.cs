@@ -87,9 +87,9 @@
             // 
             // panelContenedor
             // 
-            panelContenedor.Location = new Point(170, -5);
+            panelContenedor.Location = new Point(-6, 0);
             panelContenedor.Name = "panelContenedor";
-            panelContenedor.Size = new Size(1061, 688);
+            panelContenedor.Size = new Size(1237, 683);
             panelContenedor.TabIndex = 48;
             panelContenedor.Visible = false;
             // 
